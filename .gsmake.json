@@ -1,0 +1,31 @@
+{
+    "name":"github.com/gsmake/golang",
+
+    "import":[
+        {"name":"github.com/gsdocker/gs2go","domain":"task","version":"v2.0"}
+    ],
+
+    "task":{
+        "compile":{
+            "prev":"gs2go",
+            "domain":"all|golang",
+            "description" : "compile golang source codes"
+        },
+
+        "test":{
+            "prev":"compile",
+            "domain":"all|golang",
+            "description" : "run golang test"
+        }
+    },
+
+    "properties":{
+        "gsmake.golang.binary" :{
+            "test" : "./test"
+        },
+
+        "gsmake.golang.test" :[
+            {"dir":"./test","flags":""}
+        ]
+    }
+}
