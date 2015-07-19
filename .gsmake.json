@@ -1,13 +1,8 @@
 {
     "name":"github.com/gsmake/golang",
 
-    "import":[
-        {"name":"github.com/gsdocker/gs2go","domain":"task","version":"release/v3.0"}
-    ],
-
     "task":{
         "compile":{
-            "prev":"gs2go",
             "domain":"all|golang",
             "description" : "compile golang source codes"
         },
