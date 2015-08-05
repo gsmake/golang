@@ -12,6 +12,11 @@ import (
 	"github.com/gsmake/gsmake/property"
 )
 
+// TaskResource compile golang resources
+func TaskResource(runner *gsmake.Runner, args ...string) error {
+	return nil
+}
+
 // TaskCompile compile golang resources
 func TaskCompile(runner *gsmake.Runner, args ...string) error {
 

@@ -2,7 +2,14 @@
     "name":"github.com/gsmake/golang",
 
     "task":{
+
+        "resource":{
+            "domain":"all|golang",
+            "description" : "prepare golang resources"
+        },
+
         "compile":{
+            "prev":"resource",
             "domain":"all|golang",
             "description" : "compile golang source codes"
         },
