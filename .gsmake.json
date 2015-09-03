@@ -9,13 +9,13 @@
         },
 
         "compile":{
-            "prev":"resource",
+            "prev":["resource"],
             "domain":"all|golang",
             "description" : "compile golang source codes"
         },
 
         "test":{
-            "prev":"compile",
+            "prev":["compile"],
             "domain":"all|golang",
             "description" : "run golang test"
         }
