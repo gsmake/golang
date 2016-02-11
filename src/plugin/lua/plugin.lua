@@ -195,7 +195,7 @@ task.test = function(self,name,...)
 
 end
 task.test.Desc = "run golang test command"
-task.test.Prev = "resources"
+task.test.Prev = "compile"
 
 task.install = function(self,install_path)
     fs.copy_dir(outputdir,filepath.join(install_path,"bin"),fs.update_existing)
