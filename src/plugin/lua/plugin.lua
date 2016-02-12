@@ -121,28 +121,31 @@ task.compile = function(self)
         local exec = sys.exec(go)
 
         if type(binary) == "table" then
-            local path = filepath.join(linked,binary.path)
-            name = binary.name
-            exec:dir(path)
-            print(string.format("compile %s :\n",name))
-            local ok,err = pcall(exec.start,exec,"build","-o",outputdir .. name .. sys.EXE_NAME)
+              local path = filepath.join(linked,binary.path)
+              name = binary.name
+              exec:dir(path)
+              print(string.format("compile %s :\n",name))
+              local ok,err = pcall(exec.start,exec,"build","-o",filepath.join(outputdir,name .. sys.EXE_NAME))
 
-            if not ok then
-                print(string.format("compile target(%s) error\n\t%s",binary,err))
-                return true
-            end
-        else
-            local path = filepath.join(linked,binary)
-            name = binary
-            exec:dir(path)
-            print(string.format("compile %s :\n",name))
-            local ok,err = pcall(exec.start,exec,"install")
+              if not ok then
+                  print(string.format("compile target(%s) error\n\t%s",binary,err))
+                  return true
+              end
+          else
+              local path = filepath.join(linked,binary)
+              name = binary
+              exec:dir(path)
 
-            if not ok then
-                print(string.format("compile target(%s) error\n\t%s",binary,err))
-                return true
-            end
-        end
+              name = filepath.base(filepath.join(outputdir,name)) .. sys.EXE_NAME
+
+              print(string.format("compile %s :\n",name))
+              local ok,err = pcall(exec.start,exec,"build","-o",filepath.join(outputdir,name .. sys.EXE_NAME))
+
+              if not ok then
+                  print(string.format("compile target(%s) error\n\t%s",binary,err))
+                  return true
+              end
+          end
 
         if 0 ~= exec:wait() then
             print(string.format("compile %s -- failed",name))
