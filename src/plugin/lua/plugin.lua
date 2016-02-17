@@ -139,7 +139,7 @@ task.compile = function(self)
               name = filepath.base(filepath.join(outputdir,name)) .. sys.EXE_NAME
 
               print(string.format("compile %s :\n",name))
-              local ok,err = pcall(exec.start,exec,"build","-o",filepath.join(outputdir,name .. sys.EXE_NAME))
+              local ok,err = pcall(exec.start,exec,"build","-o",filepath.join(outputdir,name))
 
               if not ok then
                   print(string.format("compile target(%s) error\n\t%s",binary,err))
