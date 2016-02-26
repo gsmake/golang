@@ -124,13 +124,16 @@ task.compile = function(self)
               local path = filepath.join(linked,binary.path)
               name = binary.name
               exec:dir(path)
-              print(string.format("compile %s :\n",name))
-              local ok,err = pcall(exec.start,exec,"build","-o",filepath.join(outputdir,name .. sys.EXE_NAME))
+              print(string.format("compile %s :",name))
+              local target = filepath.join(outputdir,name .. sys.EXE_NAME)
+              local ok,err = pcall(exec.start,exec,"build","-o",target)
 
               if not ok then
                   print(string.format("compile target(%s) error\n\t%s",binary,err))
                   return true
               end
+
+              print(string.format("-o %s",target))
           else
               local path = filepath.join(linked,binary)
               name = binary
@@ -138,13 +141,16 @@ task.compile = function(self)
 
               name = filepath.base(filepath.join(outputdir,name)) .. sys.EXE_NAME
 
-              print(string.format("compile %s :\n",name))
-              local ok,err = pcall(exec.start,exec,"build","-o",filepath.join(outputdir,name))
+              print(string.format("compile %s :",name))
+              local target = filepath.join(outputdir,name)
+              local ok,err = pcall(exec.start,exec,"build","-o",target)
 
               if not ok then
                   print(string.format("compile target(%s) error\n\t%s",binary,err))
                   return true
               end
+
+              print(string.format("-o %s",target))
           end
 
         if 0 ~= exec:wait() then
